@@ -103,7 +103,7 @@ const Tweets = (props) => {
     return (
         <div className='tweets'>
             <ToastContainer />
-            {tweets.map((tweet) => (
+            {tweets && tweets.length === 0 ? <p>Loading...</p> : tweets.map((tweet) => (
                 <div onClick={() => { props.tweetDetailPage(tweet._id) }} className="card mx-auto my-2 py-1" style={{ maxWidth: "95%" }}>
                     {tweet.tweetedBy._id === userData?.userId && (
                         <button className="trash-icon" onClick={(e) => { e.stopPropagation(); deleteTweet(e, tweet._id) }} style={{ position: "absolute", top: 10, right: 10, border: "none" }}>

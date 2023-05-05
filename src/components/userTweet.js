@@ -112,7 +112,7 @@ const UserTweet = (props) => {
             <div className='mt-3'>
                 <p className='text-center fw-bold fs-5'>Tweets and Replies</p><div className='tweets'>
                     <div className='tweets'>
-                        {tweets.map((tweet) => (
+                        {tweets && tweets.length === 0 ? <p>Loading...</p> : tweets.map((tweet) => (
                             tweet.tweetedBy._id === getuserId ? (
                                 <div className="card mx-auto my-2 py-1" style={{ maxWidth: "95%" }}>
                                     {tweet.tweetedBy._id === userId && (
