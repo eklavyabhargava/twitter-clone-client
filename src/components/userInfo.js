@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useParams } from 'react-router-dom';
 
 const UserInfo = (props) => {
+    // api url
+    const API_URL = props.API_URL;
 
     const { getuserId } = useParams();
 
@@ -46,7 +48,7 @@ const UserInfo = (props) => {
         const followingId = userInfo._id;
 
         try {
-            const response = await axios.put(`http://localhost:4000/api/user/${followingId}/follow`, {}, {
+            const response = await axios.put(`${API_URL}/api/user/${followingId}/follow`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -82,7 +84,7 @@ const UserInfo = (props) => {
         const followingId = userInfo._id;
 
         try {
-            const response = await axios.put(`http://localhost:4000/api/user/${followingId}/unfollow`, {}, {
+            const response = await axios.put(`${API_URL}/api/user/${followingId}/unfollow`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -135,7 +137,7 @@ const UserInfo = (props) => {
             });
         } else {
             try {
-                const response = await axios.put(`http://localhost:4000/api/user/${userId}`, {
+                const response = await axios.put(`${API_URL}/api/user/${userId}`, {
                     name,
                     location,
                     dob
@@ -186,7 +188,7 @@ const UserInfo = (props) => {
             formData.append('profilePic', imgFile);
 
             try {
-                const response = await axios.post(`http://localhost:4000/api/user/${getuserId}/uploadProfilePic`, formData, {
+                const response = await axios.post(`${API_URL}/api/user/${getuserId}/uploadProfilePic`, formData, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "multipart/form-data"

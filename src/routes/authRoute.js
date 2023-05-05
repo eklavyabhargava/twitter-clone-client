@@ -6,7 +6,10 @@ import TweetDetail from '../pages/tweetDetail'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 
-export default function AuthRoutes() {
+export default function AuthRoutes(props) {
+
+    // api url
+    const API_URL = props.API_URL;
 
     // get logged in user data
     const userData = JSON.parse(localStorage.getItem('userData'));
@@ -20,7 +23,7 @@ export default function AuthRoutes() {
     // get single user details
     const getUserProfile = async (userId) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/user/${userId}`, {
+            const response = await axios.get(`${API_URL}/api/user/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${userData.token}`
                 }
@@ -57,7 +60,7 @@ export default function AuthRoutes() {
         if (icon.classList.contains('fa-regular')) {
             // like post
             try {
-                const response = await axios.post(`http://localhost:4000/api/tweet/${postId}/like`, {}, {
+                const response = await axios.post(`${API_URL}/api/tweet/${postId}/like`, {}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -90,7 +93,7 @@ export default function AuthRoutes() {
         } else {
             // unlike post
             try {
-                const response = await axios.post(`http://localhost:4000/api/tweet/${postId}/dislike`, {}, {
+                const response = await axios.post(`${API_URL}/api/tweet/${postId}/dislike`, {}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -122,7 +125,7 @@ export default function AuthRoutes() {
 
         // try to retweet
         try {
-            const response = await axios.post(`http://localhost:4000/api/tweet/${tweetId}/retweet`, {}, {
+            const response = await axios.post(`${API_URL}/api/tweet/${tweetId}/retweet`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -162,7 +165,7 @@ export default function AuthRoutes() {
 
         // delete tweet
         try {
-            const response = await axios.delete(`http://localhost:4000/api/tweet/${tweetId}`, {
+            const response = await axios.delete(`${API_URL}/api/tweet/${tweetId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -213,9 +216,9 @@ export default function AuthRoutes() {
                     <div className='col-8' style={{ backgroundColor: "#fff" }}>
                         <div>
                             <Routes>
-                                <Route path='/' element={<Home tweetDetailPage={tweetDetailPage} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
-                                <Route path='/profile/:getuserId' element={<Profile getUserProfile={getUserProfile} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
-                                <Route path='/tweetDetail/:tweetId' element={<TweetDetail tweetDetailPage={tweetDetailPage} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
+                                <Route path='/' element={<Home API_URL={API_URL} tweetDetailPage={tweetDetailPage} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
+                                <Route path='/profile/:getuserId' element={<Profile API_URL={API_URL} getUserProfile={getUserProfile} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
+                                <Route path='/tweetDetail/:tweetId' element={<TweetDetail API_URL={API_URL} tweetDetailPage={tweetDetailPage} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
                             </Routes>
                         </div>
                     </div>

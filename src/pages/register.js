@@ -4,7 +4,10 @@ import { toast, ToastContainer } from 'react-toastify';
 import './login.css';
 import axios from 'axios';
 
-const Register = () => {
+const Register = (props) => {
+    // api url
+    const API_URL = props.API_URL;
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -18,7 +21,7 @@ const Register = () => {
         setLoading(true);
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:4000/api/auth/register', {
+            const response = await axios.post(`${API_URL}/api/auth/register`, {
                 name: name,
                 email: email,
                 username: username,

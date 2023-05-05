@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react"
 import { ToastContainer, toast } from "react-toastify";
 
 const TweetReplies = (props) => {
+    // api url
+    const API_URL = props.API_URL;
 
     const [tweetDetail, setTweetDetail] = useState({});
     const [replyMsg, setReplyMsg] = useState('');
@@ -21,7 +23,7 @@ const TweetReplies = (props) => {
 
         // tweet reply
         try {
-            const response = await axios.post(`http://localhost:4000/api/tweet/${replyId}/reply`, { content: replyMsg }, {
+            const response = await axios.post(`${API_URL}/api/tweet/${replyId}/reply`, { content: replyMsg }, {
                 headers: {
                     Authorization: `Bearer ${userData.token}`
                 }
@@ -91,7 +93,7 @@ const TweetReplies = (props) => {
                     <div className="row g-0">
                         <div className="col-md-1">
                             <div className="user-img ps-3 mt-4 pt-1">
-                                <img className='img-fluid rounded-circle' src={`http://localhost:4000/api/user/${reply.tweetedBy._id}/profile-pic`} alt='' />
+                                <img className='img-fluid rounded-circle' src={`${API_URL}/api/user/${reply.tweetedBy._id}/profile-pic`} alt='' />
                             </div>
                         </div>
                         <div className="col-md-8 pt-1">

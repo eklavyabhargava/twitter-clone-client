@@ -5,6 +5,8 @@ import './tweets.css'
 import axios from 'axios';
 
 const Tweets = (props) => {
+    // api url
+    const API_URL = props.API_URL;
 
     const [tweets, setTweets] = useState([]);
     const [replyMsg, setReplyMsg] = useState('');
@@ -49,7 +51,7 @@ const Tweets = (props) => {
 
         // tweet reply
         try {
-            const response = await axios.post(`http://localhost:4000/api/tweet/${tweetId}/reply`, { content: replyMsg }, {
+            const response = await axios.post(`${API_URL}/api/tweet/${tweetId}/reply`, { content: replyMsg }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -81,7 +83,7 @@ const Tweets = (props) => {
 
     // get all tweets
     const allTweet = () => {
-        axios.get('http://localhost:4000/api/tweet', {
+        axios.get(`${API_URL}/api/tweet`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -111,7 +113,7 @@ const Tweets = (props) => {
                     <div className="row g-0">
                         <div className="col-md-1">
                             <div className="user-img ps-3 mt-4 pt-1">
-                                <img className='img-fluid rounded-circle' src={`http://localhost:4000/api/user/${tweet.tweetedBy._id}/profile-pic`} alt='' />
+                                <img className='img-fluid rounded-circle' src={`${API_URL}/api/user/${tweet.tweetedBy._id}/profile-pic`} alt='' />
                             </div>
                         </div>
                         <div className="col-md-8 pt-1">
@@ -125,7 +127,7 @@ const Tweets = (props) => {
                                 {tweet.image && (
                                     <img
                                         className="img-fluid mt-0"
-                                        src={`http://localhost:4000/api/tweet/${tweet._id}/image`}
+                                        src={`${API_URL}/api/tweet/${tweet._id}/image`}
                                         alt=""
                                     />
                                 )}

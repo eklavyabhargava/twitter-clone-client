@@ -6,6 +6,9 @@ import UserInfo from '../components/userInfo';
 import UserTweet from '../components/userTweet';
 
 const Profile = (props) => {
+    // api url
+    const API_URL = props.API_URL;
+
     const { getuserId } = useParams();
 
     return (
@@ -14,11 +17,11 @@ const Profile = (props) => {
             <div>
                 <p className='fw-bold fs-3'>Profile</p>
                 <div className='profile mb-2'>
-                    <img className='img-fluid mb-0 pb-0 rounded-circle ms-3 position-relative top-100 start-0 translate-middle-y' src={`http://localhost:4000/api/user/${getuserId}/profile-pic`} alt='' />
+                    <img className='img-fluid mb-0 pb-0 rounded-circle ms-3 position-relative top-100 start-0 translate-middle-y' src={`${API_URL}/api/user/${getuserId}/profile-pic`} alt='' />
                 </div>
                 <div className='position-relative user-detail top-100 ms-3'>
-                    <UserInfo getUserProfile={props.getUserProfile} />
-                    <UserTweet getProfile={props.getProfile} handleRetweet={props.handleRetweet} handleDelete={props.handleDelete} handleLike={props.handleLike} />
+                    <UserInfo API_URL={API_URL} getUserProfile={props.getUserProfile} />
+                    <UserTweet API_URL={API_URL} getProfile={props.getProfile} handleRetweet={props.handleRetweet} handleDelete={props.handleDelete} handleLike={props.handleLike} />
                 </div>
             </div>
         </>

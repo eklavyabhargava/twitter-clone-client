@@ -6,6 +6,9 @@ import './homePage.css';
 import Tweet from '../components/tweets';
 
 const HomePage = (props) => {
+    // api url
+    const API_URL = props.API_URL;
+
     const [content, setContent] = useState('');
 
     const closeButtonRef = useRef();
@@ -56,7 +59,7 @@ const HomePage = (props) => {
                 formData.append('image', imgFile);
             }
 
-            axios.post('http://localhost:4000/api/tweet', formData, {
+            axios.post(`${API_URL}/api/tweet`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'

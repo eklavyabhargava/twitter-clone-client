@@ -2,6 +2,8 @@ import { NavLink, Link } from 'react-router-dom'
 import './sideBar.css';
 
 const SideBar = (props) => {
+    // api url
+    const API_URL = props.API_URL;
 
     const userData = JSON.parse(localStorage.getItem('userData'));
 
@@ -31,7 +33,7 @@ const SideBar = (props) => {
 
             <Link to={`/profile/${userData.userId}`} style={{textDecoration: "inherit"}}>
                 <div className="user-profile ps-3 pb-2">
-                    <div className="profile-img mt-1"><img className='img-fluid rounded-circle' src={`http://localhost:4000/api/user/${props.userId}/profile-pic`} alt='' />
+                    <div className="profile-img mt-1"><img className='img-fluid rounded-circle' src={`${API_URL}/api/user/${props.userId}/profile-pic`} alt='' />
                     </div>
                     <div className='profileInfo'>
                         <p className='fw-bold fs-5 mb-1'>{props.name}</p>

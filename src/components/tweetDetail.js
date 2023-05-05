@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react"
 import { ToastContainer, toast } from "react-toastify";
 
 const TweetInfo = (props) => {
+    // api url
+    const API_URL = props.API_URL;
 
     const [tweetDetail, setTweetDetail] = useState([]);
     const [replyMsg, setReplyMsg] = useState('');
@@ -20,7 +22,7 @@ const TweetInfo = (props) => {
 
         // tweet reply
         try {
-            const response = await axios.post(`http://localhost:4000/api/tweet/${replyId}/reply`, { content: replyMsg }, {
+            const response = await axios.post(`${API_URL}/api/tweet/${replyId}/reply`, { content: replyMsg }, {
                 headers: {
                     Authorization: `Bearer ${userData.token}`
                 }
@@ -81,7 +83,7 @@ const TweetInfo = (props) => {
                 <div className="row g-0">
                     <div className="col-md-1">
                         <div className="user-img ps-3 pt-2">
-                            <img className='img-fluid rounded-circle' src={`http://localhost:4000/api/user/${tweetDetail.tweetedBy._id}/profile-pic`} alt='' />
+                            <img className='img-fluid rounded-circle' src={`${API_URL}/api/user/${tweetDetail.tweetedBy._id}/profile-pic`} alt='' />
                         </div>
                     </div>
                     <div className="col-md-8 pt-1">
@@ -91,7 +93,7 @@ const TweetInfo = (props) => {
                             {tweetDetail.image && (
                                 <img
                                     className="img-fluid"
-                                    src={`http://localhost:4000/api/tweet/${tweetDetail._id}/image`}
+                                    src={`${API_URL}/api/tweet/${tweetDetail._id}/image`}
                                     alt=""
                                 />
                             )}

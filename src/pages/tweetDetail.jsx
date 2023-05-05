@@ -7,6 +7,9 @@ import TweetReplies from '../components/tweetReplies';
 
 
 const TweetDetail = (props) => {
+    // api url
+    const API_URL = props.API_URL;
+
 
     const { tweetId } = useParams();
     const [tweetDetail, setTweetDetail] = useState([]);
@@ -21,7 +24,7 @@ const TweetDetail = (props) => {
     // get tweet detail
     const getTweetDetail = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/tweet/${tweetId}`, {
+            const response = await axios.get(`${API_URL}/api/tweet/${tweetId}`, {
                 headers: {
                     Authorization: `Bearer ${userData.token}`
                 }
@@ -55,10 +58,10 @@ const TweetDetail = (props) => {
         <>
             <div>
                 <p className='fw-bold fs-3'>Tweet</p>
-                <TweetInfo tweetInfo={tweetDetail} handleLike={props.handleLike} handleRetweet={props.handleRetweet} handleDelete={props.handleDelete} getTweetDetail={getTweetDetail} />
+                <TweetInfo API_URL={API_URL} tweetInfo={tweetDetail} handleLike={props.handleLike} handleRetweet={props.handleRetweet} handleDelete={props.handleDelete} getTweetDetail={getTweetDetail} />
 
                 <p className='fw-bold fs-5 mt-4'>Replies</p>
-                <TweetReplies tweetInfo={tweetDetail} tweetDetailPage={props.tweetDetailPage} handleLike={props.handleLike} handleRetweet={props.handleRetweet} handleDelete={props.handleDelete} getTweetDetail={getTweetDetail} />
+                <TweetReplies API_URL={API_URL} tweetInfo={tweetDetail} tweetDetailPage={props.tweetDetailPage} handleLike={props.handleLike} handleRetweet={props.handleRetweet} handleDelete={props.handleDelete} getTweetDetail={getTweetDetail} />
             </div >
         </>
     )

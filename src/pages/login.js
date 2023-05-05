@@ -5,7 +5,10 @@ import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios';
 import './login.css';
 
-const Login = () => {
+const Login = (props) => {
+    // api url
+    const API_URL = props.API_URL;
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -19,7 +22,7 @@ const Login = () => {
 
         // post username and password
         try {
-            axios.post('http://localhost:4000/api/auth/login', {
+            axios.post(`${API_URL}/api/auth/login`, {
                 username: username,
                 password: password
             }).then(response => {

@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useParams } from 'react-router-dom';
 
 const UserTweet = (props) => {
+    // api url
+    const API_URL = props.API_URL;
 
     const { getuserId } = useParams();
     const [tweets, setTweets] = useState([]);
@@ -54,7 +56,7 @@ const UserTweet = (props) => {
 
         // tweet reply
         try {
-            const response = await axios.post(`http://localhost:4000/api/tweet/${tweetId}/reply`, { content: replyMsg }, {
+            const response = await axios.post(`${API_URL}/api/tweet/${tweetId}/reply`, { content: replyMsg }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -86,7 +88,7 @@ const UserTweet = (props) => {
 
     // get all tweets
     const allTweet = () => {
-        axios.get('http://localhost:4000/api/tweet', {
+        axios.get(`${API_URL}/api/tweet`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -121,7 +123,7 @@ const UserTweet = (props) => {
                                     <div className="row g-0">
                                         <div className="col-md-1">
                                             <div className="user-img ps-3 pt-2">
-                                                <img className='img-fluid rounded-circle' src={`http://localhost:4000/api/user/${tweet.tweetedBy._id}/profile-pic`} alt='' />
+                                                <img className='img-fluid rounded-circle' src={`${API_URL}/api/user/${tweet.tweetedBy._id}/profile-pic`} alt='' />
                                             </div>
                                         </div>
                                         <div className="col-md-8 pt-1">
@@ -131,7 +133,7 @@ const UserTweet = (props) => {
                                                 {tweet.image && (
                                                     <img
                                                         className="img-fluid"
-                                                        src={`http://localhost:4000/api/tweet/${tweet._id}/image`}
+                                                        src={`${API_URL}/api/tweet/${tweet._id}/image`}
                                                         alt=""
                                                     />
                                                 )}
