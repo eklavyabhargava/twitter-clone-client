@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 const UserInfo = (props) => {
     // api url
-    const API_URL = props.API_URL;
+    const API_URL = 'https://twitter-clone-server-6e8b.onrender.com';
 
     const { getuserId } = useParams();
 
@@ -225,13 +225,13 @@ const UserInfo = (props) => {
     return (
         <>
             <ToastContainer />
-            {userInfo._id === userId ?
+            {userInfo && userInfo._id === userId ?
                 <div className="position-absolute top-0 end-0">
                     <button type="button" className="btn btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Upload Profile Photo</button>
                     <button type="button" className="btn btn-outline-secondary ms-2 me-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</button>
                 </div> :
-                <button type="button" onClick={() => { userInfo.followers && userInfo.followers.includes(userId) ? handleUnfollow() : handleFollow() }} className="follow-btn btn btn-dark me-2 position-absolute top-0 end-0">
-                    {userInfo.followers && userInfo.followers.includes(userId) ? "Following" : "Follow"}
+                <button type="button" onClick={() => { userInfo.followers && userInfo?.followers.includes(userId) ? handleUnfollow() : handleFollow() }} className="follow-btn btn btn-dark me-2 position-absolute top-0 end-0">
+                    {userInfo?.followers && userInfo?.followers.includes(userId) ? "Following" : "Follow"}
                 </button>
             }
 
@@ -288,16 +288,16 @@ const UserInfo = (props) => {
                     </div>
                 </div>
             </div>
-            <p className='mb-0 fw-bold fs-5'>{userInfo.name}</p>
-            <p className='fs-5 mb-0' style={{ color: "#5a5a5a" }}>@{userInfo.username}</p>
+            <p className='mb-0 fw-bold fs-5'>{userInfo?.name}</p>
+            <p className='fs-5 mb-0' style={{ color: "#5a5a5a" }}>@{userInfo?.username}</p>
             <div className='mt-3 mb-1'>
-                <i className="fa-solid fa-calendar" style={{ color: "#333333" }}></i><span style={{ color: "#535353" }}> DOB: {userInfo.dob ? new Date(userInfo.dob).toDateString() : null}</span>
-                <i className="ms-4 fa-solid fa-location-dot" style={{ color: "#333333" }}></i><span style={{ color: "#535353" }}> Location: {userInfo.location}</span>
+                <i className="fa-solid fa-calendar" style={{ color: "#333333" }}></i><span style={{ color: "#535353" }}> DOB: {userInfo?.dob ? new Date(userInfo?.dob).toDateString() : null}</span>
+                <i className="ms-4 fa-solid fa-location-dot" style={{ color: "#333333" }}></i><span style={{ color: "#535353" }}> Location: {userInfo?.location}</span>
             </div>
-            <i className="fa-regular fa-calendar" style={{ color: "#333333" }}></i><span style={{ color: "#535353" }}> Joined {new Date(userInfo.createdAt).toDateString()}</span>
+            <i className="fa-regular fa-calendar" style={{ color: "#333333" }}></i><span style={{ color: "#535353" }}> Joined {new Date(userInfo?.createdAt).toDateString()}</span>
             <div className='mt-3 d-flex flex-row fw-bold'>
-                <p className='me-3'>{userInfo.following?.length} Followings</p>
-                <p>{userInfo.followers?.length} Followers</p>
+                <p className='me-3'>{userInfo?.following?.length} Followings</p>
+                <p>{userInfo?.followers?.length} Followers</p>
             </div>
         </>
     );

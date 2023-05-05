@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Register = (props) => {
     // api url
-    const API_URL = props.API_URL;
+    const API_URL = 'https://twitter-clone-server-6e8b.onrender.com';
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

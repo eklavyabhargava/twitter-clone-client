@@ -6,10 +6,10 @@ import TweetDetail from '../pages/tweetDetail'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 
-export default function AuthRoutes(props) {
+export default function AuthRoutes() {
 
     // api url
-    const API_URL = props.API_URL;
+    const API_URL = 'https://twitter-clone-server-6e8b.onrender.com';
 
     // get logged in user data
     const userData = JSON.parse(localStorage.getItem('userData'));
@@ -216,9 +216,9 @@ export default function AuthRoutes(props) {
                     <div className='col-8' style={{ backgroundColor: "#fff" }}>
                         <div>
                             <Routes>
-                                <Route path='/' element={<Home API_URL={API_URL} tweetDetailPage={tweetDetailPage} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
-                                <Route path='/profile/:getuserId' element={<Profile API_URL={API_URL} getUserProfile={getUserProfile} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
-                                <Route path='/tweetDetail/:tweetId' element={<TweetDetail API_URL={API_URL} tweetDetailPage={tweetDetailPage} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
+                                <Route path='/' element={<Home tweetDetailPage={tweetDetailPage} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
+                                <Route path='/profile/:getuserId' element={<Profile getUserProfile={getUserProfile} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
+                                <Route path='/tweetDetail/:tweetId' element={<TweetDetail tweetDetailPage={tweetDetailPage} getProfile={getProfile} handleRetweet={handleRetweet} handleDelete={handleDelete} handleLike={handleLike} />} />
                             </Routes>
                         </div>
                     </div>

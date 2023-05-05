@@ -7,7 +7,7 @@ import Tweet from '../components/tweets';
 
 const HomePage = (props) => {
     // api url
-    const API_URL = props.API_URL;
+    const API_URL = 'https://twitter-clone-server-6e8b.onrender.com';
 
     const [content, setContent] = useState('');
 

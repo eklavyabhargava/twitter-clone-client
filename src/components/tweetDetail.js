@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const TweetInfo = (props) => {
     // api url
-    const API_URL = props.API_URL;
+    const API_URL = 'https://twitter-clone-server-6e8b.onrender.com';
 
     const [tweetDetail, setTweetDetail] = useState([]);
     const [replyMsg, setReplyMsg] = useState('');
@@ -79,7 +79,7 @@ const TweetInfo = (props) => {
     return (
         <>
             <ToastContainer />
-            {tweetDetail.length < 0 ? <p>Loading...</p> :
+            {!tweetDetail < 0 ? <p>Loading...</p> :
                 <div className="row g-0">
                     <div className="col-md-1">
                         <div className="user-img ps-3 pt-2">

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Tweets = (props) => {
     // api url
-    const API_URL = props.API_URL;
+    const API_URL = 'https://twitter-clone-server-6e8b.onrender.com';
 
     const [tweets, setTweets] = useState([]);
     const [replyMsg, setReplyMsg] = useState('');
@@ -83,6 +83,7 @@ const Tweets = (props) => {
 
     // get all tweets
     const allTweet = () => {
+        console.log(API_URL);
         axios.get(`${API_URL}/api/tweet`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -103,7 +104,7 @@ const Tweets = (props) => {
     return (
         <div className='tweets'>
             <ToastContainer />
-            {tweets && tweets.length < 0 ? <p>Loading...</p> : tweets.map((tweet) => (
+            {!tweets ? <p>Loading...</p> : tweets.map((tweet) => (
                 <div onClick={() => { props.tweetDetailPage(tweet._id) }} className="card mx-auto my-2 py-1" style={{ maxWidth: "95%" }}>
                     {tweet.tweetedBy._id === userData?.userId && (
                         <button className="trash-icon" onClick={(e) => { e.stopPropagation(); deleteTweet(e, tweet._id) }} style={{ position: "absolute", top: 10, right: 10, border: "none" }}>

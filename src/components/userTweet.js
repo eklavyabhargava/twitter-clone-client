@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 const UserTweet = (props) => {
     // api url
-    const API_URL = props.API_URL;
+    const API_URL = 'https://twitter-clone-server-6e8b.onrender.com';
 
     const { getuserId } = useParams();
     const [tweets, setTweets] = useState([]);
@@ -112,7 +112,7 @@ const UserTweet = (props) => {
             <div className='mt-3'>
                 <p className='text-center fw-bold fs-5'>Tweets and Replies</p><div className='tweets'>
                     <div className='tweets'>
-                        {tweets && tweets.length < 0 ? <p>Loading...</p> : tweets.map((tweet) => (
+                        {!tweets < 0 ? <p>Loading...</p> : tweets.map((tweet) => (
                             tweet.tweetedBy._id === getuserId ? (
                                 <div className="card mx-auto my-2 py-1" style={{ maxWidth: "95%" }}>
                                     {tweet.tweetedBy._id === userId && (

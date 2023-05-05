@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login API_URL={API_URL}  />} />
         <Route path='/register' element={<Register API_URL={API_URL} />} />
-        <Route path='/*' element={<AuthRoutes API_URL={API_URL} />} />
+        <Route path='/*' element={<AuthRoutes />} />
       </Routes>
     </BrowserRouter>
   );
