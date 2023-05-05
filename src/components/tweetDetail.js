@@ -79,7 +79,7 @@ const TweetInfo = (props) => {
     return (
         <>
             <ToastContainer />
-            {tweetDetail.length === 0 ? <p>Loading...</p> :
+            {tweetDetail.length < 0 ? <p>Loading...</p> :
                 <div className="row g-0">
                     <div className="col-md-1">
                         <div className="user-img ps-3 pt-2">
