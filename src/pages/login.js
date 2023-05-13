@@ -21,34 +21,35 @@ const Login = (props) => {
         e.preventDefault();
 
         // post username and password
-        try {
-            axios.post(`${API_URL}/api/auth/login`, {
-                username: username,
-                password: password
-            }).then(response => {
-                setLoading(false);
+        axios.post(`${API_URL}/api/auth/login`, {
+            username: username,
+            password: password
+        }).then(response => {
+            if (response.status === 200) {
                 localStorage.setItem('userData', JSON.stringify({ token: response.data.Token, userId: response.data.userId, name: response.data.Name, username: response.data.username }));
                 toast.success('Login Successful!', {
                     position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 800,
                     toastId: customId1
                 });
                 window.location = '/';
-            }).catch(error => {
-                // handle error
-                setLoading(false);
-                toast.error(error.response.data.Error, {
+            } else {
+                toast.error(response.data.Error, {
                     position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 800,
                     toastId: customId2
                 });
-                console.log(error.response.data.Error);
+            }
+        }).catch(error => {
+            // handle error
+            toast.error(error.response.data.Error || "Failed to login!", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 800,
+                toastId: customId2
             });
-        } catch (error) {
-            setLoading(false);
-            toast.error('Please Login Again!', {
-                position: toast.POSITION.TOP_RIGHT
-            });
-            console.log(error);
-        }
+            console.log(error.response.data.Error);
+        });
+        setLoading(false);
     };
 
     if (localStorage.getItem('userData')) {
